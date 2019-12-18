@@ -1,37 +1,39 @@
 #!/bin/bash
 
+CONF_DIR='/etc/dockerconf/'
+
 pass_edit ()
 {
   rm -f /etc/passwd
-  cp -f /home/conf/passwd /etc/
+  cp -f ${CONF_DIR}passwd /etc/
   rm -f /etc/shadow
-  cp -f /home/conf/shadow /etc/
+  cp -f ${CONF_DIR}shadow /etc/
   rm -f /etc/group
-  cp -f /home/conf/group /etc/
+  cp -f ${CONF_DIR}group /etc/
 }
 
 pass_save ()
 {
-  rm -f /home/conf/shadow
-  mv /etc/shadow /home/conf/
-  ln -s /home/conf/shadow /etc/shadow
+  rm -f ${CONF_DIR}shadow
+  mv /etc/shadow ${CONF_DIR}
+  ln -s ${CONF_DIR}shadow /etc/shadow
 
-  rm -f /home/conf/passwd
-  mv /etc/passwd /home/conf/
-  ln -s /home/conf/passwd /etc/passwd
+  rm -f ${CONF_DIR}passwd
+  mv /etc/passwd ${CONF_DIR}
+  ln -s ${CONF_DIR}passwd /etc/passwd
 
-  rm -f /home/conf/group
-  mv /etc/group /home/conf/
-  ln -s /home/conf/group /etc/group
+  rm -f ${CONF_DIR}group
+  mv /etc/group ${CONF_DIR}
+  ln -s ${CONF_DIR}group /etc/group
 }
 
 case ${TYPE_START} in
   sshd ) rm -f /etc/passwd
          rm -f /etc/shadow
          rm -f /etc/group
-         ln -s /home/conf/shadow /etc/shadow
-         ln -s /home/conf/passwd /etc/passwd
-         ln -s /home/conf/group /etc/group 
+         ln -s ${CONF_DIR}shadow /etc/shadow
+         ln -s ${CONF_DIR}passwd /etc/passwd
+         ln -s ${CONF_DIR}group /etc/group 
          /usr/sbin/sshd -D
      ;;
   create )
@@ -40,7 +42,7 @@ case ${TYPE_START} in
          chmod 700 /home/${FTP_USER}
          echo "${FTP_USER}:${FTP_PASSWORD}" | chpasswd
          echo "root:${ROOT_PASSWORD}" | chpasswd         
-         mkdir /home/conf
+         mkdir ${CONF_DIR}
          pass_save
      ;;
   createuser )
