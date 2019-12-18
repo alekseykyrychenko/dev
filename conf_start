@@ -42,7 +42,6 @@ case ${TYPE_START} in
          chmod 700 /home/${FTP_USER}
          echo "${FTP_USER}:${FTP_PASSWORD}" | chpasswd
          echo "root:${ROOT_PASSWORD}" | chpasswd         
-         mkdir ${CONF_DIR}
          pass_save
      ;;
   createuser )
