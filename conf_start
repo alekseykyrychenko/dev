@@ -4,6 +4,7 @@ CONF_DIR='/etc/dockerconf/'
 
 pass_edit ()
 {
+  echo 'Edit password'
   rm -f /etc/passwd
   cp -f ${CONF_DIR}passwd /etc/
   rm -f /etc/shadow
@@ -14,6 +15,7 @@ pass_edit ()
 
 pass_save ()
 {
+  echo 'Save password'
   rm -f ${CONF_DIR}shadow
   mv /etc/shadow ${CONF_DIR}
   ln -s ${CONF_DIR}shadow /etc/shadow
@@ -27,6 +29,8 @@ pass_save ()
   ln -s ${CONF_DIR}group /etc/group
 }
 
+echo 'Start type: '${TYPE_START}
+
 case ${TYPE_START} in
   sshd ) rm -f /etc/passwd
          rm -f /etc/shadow
@@ -37,6 +41,7 @@ case ${TYPE_START} in
          /usr/sbin/sshd -D
      ;;
   create )
+         echo 'Create profile'
          groupadd sftp -g 3000
          useradd ${FTP_USER} -u 3000 -G sftp
          chmod 700 /home/${FTP_USER}
