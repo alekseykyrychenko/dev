@@ -30,6 +30,8 @@ pass_save ()
 }
 
 echo 'Start type: '${TYPE_START}
+df -h
+ls -ld ${CONF_DIR}*
 
 case ${TYPE_START} in
   sshd ) rm -f /etc/passwd
