@@ -46,7 +46,7 @@ case ${TYPE_START} in
   create )
          echo 'Create profile'
          groupadd sftp -g 3000||exit
-         usermod -d /home/ root
+         sed -i 's/\/root/\/home/' /etc/passwd
          echo "root:${ROOT_PASSWORD}" | chpasswd         
          pass_save
      ;;
