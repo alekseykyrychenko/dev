@@ -40,6 +40,7 @@ case ${TYPE_START} in
          ln -s ${CONF_DIR}shadow /etc/shadow
          ln -s ${CONF_DIR}passwd /etc/passwd
          ln -s ${CONF_DIR}group /etc/group 
+         cat /tmp/dev/sshd_config > /etc/ssh/sshd_config
          /usr/sbin/sshd -D
      ;;
   create )
