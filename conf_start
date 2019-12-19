@@ -44,13 +44,13 @@ case ${TYPE_START} in
      ;;
   create )
          echo 'Create profile'
-         groupadd sftp -g 3000
+         groupadd sftp -g 3000||exit
          echo "root:${ROOT_PASSWORD}" | chpasswd         
          pass_save
      ;;
   createuser )
         pass_edit
-        useradd ${FTP_USER} --no-create-home -G sftp
+        useradd ${FTP_USER} --no-create-home -G sftp||exit
         mkdir /home/${FTP_USER}
         chown ${FTP_USER}.${FTP_USER} /home/${FTP_USER}
         chmod 700 /home/${FTP_USER}
