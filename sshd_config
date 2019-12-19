@@ -21,3 +21,8 @@ Match Group sftp
   AllowTcpForwarding no
   ChrootDirectory /home/%u
   ForceCommand internal-sftp
+Match User root
+  X11Forwarding no
+  AllowTcpForwarding no
+  ChrootDirectory /root/chroot
+  ForceCommand internal-sftp
