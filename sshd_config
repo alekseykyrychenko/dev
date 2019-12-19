@@ -16,9 +16,13 @@ AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
 AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
 AcceptEnv XMODIFIERS
 Subsystem sftp internal-sftp
-Match Group sftp_users
+Match Group sftp
   X11Forwarding no
   AllowTcpForwarding no
   ChrootDirectory /home/%u
   ForceCommand internal-sftp
 Match User root
+  X11Forwarding no
+  AllowTcpForwarding no
+  ChrootDirectory /home/
+  ForceCommand internal-sftp
