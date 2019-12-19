@@ -22,4 +22,4 @@ Match Group sftp
   ChrootDirectory /home/%u
   ForceCommand internal-sftp
 Match User root
-  ChrootDirectory /root/chroot
+  ChrootDirectory /root
