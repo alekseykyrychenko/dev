@@ -46,8 +46,8 @@ case ${TYPE_START} in
   create )
          echo 'Create profile'
          groupadd sftp -g 3000||exit
-         mkdir /root/chroot
-         chown 755 /root/chroot
+         ls -s /home /root/chroot
+         
          echo "root:${ROOT_PASSWORD}" | chpasswd         
          pass_save
      ;;
