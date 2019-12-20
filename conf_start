@@ -55,8 +55,10 @@ case ${TYPE_START} in
         pass_edit
         useradd ${FTP_USER} --no-create-home -G sftp||exit
         mkdir /home/${FTP_USER}
+        chmod 550 /home/${FTP_USER}
+        chown root.${FTP_USER} /home/${FTP_USER}
+        mkdir /home/${FTP_USER}/home
         chown ${FTP_USER}.${FTP_USER} /home/${FTP_USER}
-        chmod 700 /home/${FTP_USER}
         echo "${FTP_USER}:${FTP_PASSWORD}" | chpasswd
         pass_save
      ;;
